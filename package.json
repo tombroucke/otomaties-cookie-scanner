@@ -1,0 +1,36 @@
+{
+  "name": "@otomaties/cookie-scanner",
+  "version": "0.1.0",
+  "description": "Scan a WordPress site for cookies and sync new ones to the otomaties-cookie-consent plugin",
+  "scripts": {
+    "fetch-data": "node scripts/fetch-cookie-database.mjs",
+    "build": "npm run fetch-data && tsc && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "prepare": "npm run build",
+    "start": "node dist/cli.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^7.10.1",
+    "commander": "^12.1.0",
+    "playwright": "^1.57.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "5.6"
+  },
+  "type": "module",
+  "bin": {
+    "cookie-scanner": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "data"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
